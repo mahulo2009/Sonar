@@ -17,12 +17,24 @@ void Sonar::attachServo(Servo * servo)
 	this->servo_=servo;
 }
 
-unsigned int Sonar::read(int position)
+unsigned int Sonar::read()
 {
-	if (this->servo_ != 0) {
-		this->servo_->write(position);
-	}
-
 	unsigned int distance =	ultrasonic_.read();
 	return distance;
+}
+
+void Sonar::moveTo(float angle)
+{
+	#ifdef SONAR_DEBUG
+	Serial.print("Sonar::moveTo:");
+  	Serial.print("\t");
+  	Serial.print(angle);
+   	Serial.print("\n");
+	#endif
+
+	this->angle_ = angle;
+
+	if (this->servo_ != 0) {
+		this->servo_->writeMicroseconds(1450 + (600/(PI/2.0)) * angle ) ;
+	}
 }

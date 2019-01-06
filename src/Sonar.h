@@ -15,8 +15,8 @@ class Sonar : public SonarBase {
     	Sonar();
 
 		virtual unsigned int read();
-		virtual void moveTo(float angle);
-		virtual float getAngle() { return angle_; };
+		virtual void moveTo(double angle);
+		virtual double getAngle() { return angle_; };
 
 		void attachTrigger(int pin);
 		void attachEcho(int pin);
@@ -26,7 +26,7 @@ class Sonar : public SonarBase {
 	
 		Servo * servo_;
 		Ultrasonic ultrasonic_;
-		float angle_;
+		double angle_;
 };
 #endif
 

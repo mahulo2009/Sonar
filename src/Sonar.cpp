@@ -23,7 +23,7 @@ unsigned int Sonar::read()
 	return distance;
 }
 
-void Sonar::moveTo(float angle)
+void Sonar::moveTo(double angle)
 {
 	#ifdef SONAR_DEBUG
 	Serial.print("Sonar::moveTo:");

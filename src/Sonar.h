@@ -6,18 +6,24 @@
 #include "Arduino.h"
 #include <Servo.h>
 #include <Ultrasonic.h>
+#include <SonarBase.h>
 
-class Sonar {
+class Sonar : public SonarBase {
+
 	public:
+
     	Sonar();
+
+		virtual unsigned int read();
+		virtual void moveTo(float angle);
+		virtual float getAngle() { return angle_; };
+
 		void attachTrigger(int pin);
 		void attachEcho(int pin);
 		void attachServo(Servo * servo);
-		unsigned int read();
-		void moveTo(float angle);
-		float getAngle() { return angle_; };
 
 	private:
+	
 		Servo * servo_;
 		Ultrasonic ultrasonic_;
 		float angle_;
